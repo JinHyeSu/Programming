@@ -10,13 +10,20 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 public class SwingDialogDELETE_2OK extends JDialog {
-	public SwingDialogDELETE_2OK(RestaurantManager rm, int del) {
+	public SwingDialogDELETE_2OK(RestaurantManager rm, int num) {
 		super();
 		setLayout(new GridLayout(8,2,10,10));
 		setTitle("주문 삭제 확인");
 		setSize(300,500);
 		
-		
+		int count = 0;
+		int del = -1;
+		for(int i=0;i<rm.listSize();i++) {
+			String reservation = ((Restaurant) rm.list.get(i)).getReservation();
+			if(reservation.equals("N")) { count++; }
+			if(count == num) { del=i+1; break; }
+		}
+		int delete= del;
 		
 		String[] dayOFtheWeek = {"일요일","월요일","화요일","수요일","목요일","금요일","토요일"};
 		Date date = ((Restaurant) rm.list.get(del-1)).getDATE();
@@ -60,7 +67,7 @@ public class SwingDialogDELETE_2OK extends JDialog {
 				JButton b = (JButton) e.getSource();
 				if(b.getText().equals("네")) {
 					canSeat(date,canSeat,seat);
-					if(del != -1) { rm.delete(del); setVisible(false); }
+					if(delete != -1) { rm.delete(delete); setVisible(false); }
 				} // if
 			}}
 		); // addActionListener end

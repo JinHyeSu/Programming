@@ -132,6 +132,11 @@ public class SwingRestaurantManager extends JFrame implements ActionListener {
 		);
 	} //SwingRestaurantManager end
 	
+	/*public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		SwingRestaurantManager srm = new SwingRestaurantManager();
+	}*/
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

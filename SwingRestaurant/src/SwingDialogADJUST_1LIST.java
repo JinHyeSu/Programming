@@ -72,17 +72,8 @@ public class SwingDialogADJUST_1LIST extends JDialog {
 					String text = (String) tf.getText();
 					if(! text.equals("") && isNum(text)) {
 						int num = Integer.parseInt(tf.getText());
-						int count = 0;
-						int adj = -1;
-						for(int i=0;i<rm.listSize();i++) {
-							String reservation = ((Restaurant) rm.list.get(i)).getReservation();
-							if(reservation.equals("N")) { count++; }
-							if(count == num) { adj=i+1; break; }
-						}
-						int adjust= adj-1;
-						
-						if(adjust>0 && adjust<=rm.listSize()) {
-							SwingDialogADJUST_2SEAT dialogSEAT = new SwingDialogADJUST_2SEAT(rm,adjust);
+						if(num>0 && num<=rm.listSize()) {
+							SwingDialogADJUST_2SEAT dialogSEAT = new SwingDialogADJUST_2SEAT(rm,num);
 							dialogSEAT.setVisible(true);
 							setVisible(false);
 						}
