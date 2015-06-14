@@ -72,8 +72,15 @@ public class SwingDialogDELETE_1LIST extends JDialog {
 					String text = (String) tf.getText();
 					if(! text.equals("") && isNum(text)) {
 						int num = Integer.parseInt(tf.getText());
-						if(num>0 && num<=rm.listSize()) {
-							SwingDialogDELETE_2OK dialogOK = new SwingDialogDELETE_2OK(rm,num);
+						int count = 0, del = -1;
+						for(int i=0;i<rm.listSize();i++) {
+							String reservation = ((Restaurant) rm.list.get(i)).getReservation();
+							if(reservation.equals("N")) { count++; }
+							if(count == num) { del=i+1; break; }
+						}
+						
+						if(del>0 && del<=rm.listSize()) {
+							SwingDialogDELETE_2OK dialogOK = new SwingDialogDELETE_2OK(rm,del);
 							dialogOK.setVisible(true);
 							setVisible(false);
 						}

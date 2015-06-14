@@ -7,20 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 public class SwingDialogADJUST_2SEAT extends JDialog {
-	public SwingDialogADJUST_2SEAT(RestaurantManager rm, int num) {
+	public SwingDialogADJUST_2SEAT(RestaurantManager rm, int adjust) {
 		super();
 		setLayout(new GridLayout(5,2,10,10));
 		setTitle("ÁÂ¼® ¼öÁ¤");
 		setSize(300,500);
-		
-		int count = 0;
-		int adj = -1;
-		for(int i=0;i<rm.listSize();i++) {
-			String reservation = ((Restaurant) rm.list.get(i)).getReservation();
-			if(reservation.equals("N")) { count++; }
-			if(count == num) { adj=i+1; break; }
-		}
-		int adjust= adj-1;
 		
 		JButton btn1 = new JButton("A");
 		button(rm, adjust, btn1, "A");
@@ -43,7 +34,6 @@ public class SwingDialogADJUST_2SEAT extends JDialog {
 		JButton btn10 = new JButton("J");
 		button(rm, adjust, btn10, "J");
 		
-		btn1.setEnabled(false);
 		String seat = ((Restaurant) rm.list.get(adjust)).getSeat();
 		Date date = ((Restaurant) rm.list.get(adjust)).getDATE();
 		
@@ -87,7 +77,6 @@ public class SwingDialogADJUST_2SEAT extends JDialog {
 		
 		int num = whereSeat(seat);
 		timeSeatA[num]="X";
-		
 		if(timeSeatA[0].equals("O")) { btn1.setEnabled(false); }
 		if(timeSeatA[1].equals("O")) { btn2.setEnabled(false); }
 		if(timeSeatA[2].equals("O")) { btn3.setEnabled(false); }

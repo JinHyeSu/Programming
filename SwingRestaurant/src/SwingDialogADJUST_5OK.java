@@ -58,8 +58,7 @@ public class SwingDialogADJUST_5OK extends JDialog {
 				JButton b = (JButton) e.getSource();
 				if(b.getText().equals("³×")) {
 					canSeat(date,canSeat,past_seat,seat);
-					String reservation = ((Restaurant) rm.list.get(adjust-1)).getReservation();
-					if(adjust != -1) { rm.adjust(adjust+1,date,name,seat,food,money,reservation); setVisible(false); }
+					if(adjust != -1) { rm.adjust(adjust+1,date,name,seat,food,money,"N"); setVisible(false); }
 				} // if
 			}}
 		); // addActionListener end

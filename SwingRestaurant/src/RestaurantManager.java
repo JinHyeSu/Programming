@@ -334,12 +334,11 @@ public class RestaurantManager {
 		return listAll;
 	} // listAll
 	
-	public String time(Date time) {
-		Date now = new Date();
+	public String time(Date now, Date time) {
 		long gap = time.getTime() - now.getTime();
 		long minute_gap = gap /1000/60;
-		if(minute_gap<-60 || minute_gap>60) { return "X"; }
-		else if(minute_gap>-60 && minute_gap<60) { return "O"; }
+		if(minute_gap>-60 && minute_gap<60) { return "O"; }
+		else if(minute_gap<-60 || minute_gap>60) { return "X"; }
 		else { return "X"; }
 	} // time
 	
@@ -347,18 +346,21 @@ public class RestaurantManager {
 		String[] timeSeat = new String[10];
 		for(int i=0;i<timeSeat.length;i++) { timeSeat[i]="X"; }
 		for(int i=0;i<list.size();i++) {
-			Date date = ((Restaurant) list.get(i)).getDATE();
+			Date time = ((Restaurant) list.get(i)).getDATE();
 			String seat = ((Restaurant) list.get(i)).getSeat();
-			if(seat.equals("A")) { timeSeat[0]=time(date); }
-			else if(seat.equals("B")) { timeSeat[1]=time(date); }
-			else if(seat.equals("C")) { timeSeat[2]=time(date); }
-			else if(seat.equals("D")) { timeSeat[3]=time(date); }
-			else if(seat.equals("E")) { timeSeat[4]=time(date); }
-			else if(seat.equals("F")) { timeSeat[5]=time(date); }
-			else if(seat.equals("G")) { timeSeat[6]=time(date); }
-			else if(seat.equals("H")) { timeSeat[7]=time(date); }
-			else if(seat.equals("I")) { timeSeat[8]=time(date); }
-			else if(seat.equals("J")) { timeSeat[9]=time(date); }
+			Date now = new Date();
+			if(now.getYear() == time.getYear() && now.getMonth() == time.getMonth() && now.getDate() == time.getDate()) {
+				if(seat.equals("A")) { timeSeat[0]=time(now,time); }
+				else if(seat.equals("B")) { timeSeat[1]=time(now,time); }
+				else if(seat.equals("C")) { timeSeat[2]=time(now,time); }
+				else if(seat.equals("D")) { timeSeat[3]=time(now,time); }
+				else if(seat.equals("E")) { timeSeat[4]=time(now,time); }
+				else if(seat.equals("F")) { timeSeat[5]=time(now,time); }
+				else if(seat.equals("G")) { timeSeat[6]=time(now,time); }
+				else if(seat.equals("H")) { timeSeat[7]=time(now,time); }
+				else if(seat.equals("I")) { timeSeat[8]=time(now,time);}
+				else if(seat.equals("J")) { timeSeat[9]=time(now,time); }
+			}
 		}
 		return timeSeat;
 	} // timeSeat
@@ -377,16 +379,18 @@ public class RestaurantManager {
 		for(int i=0;i<list.size();i++) {
 			Date date = ((Restaurant) list.get(i)).getDATE();
 			String seat = ((Restaurant) list.get(i)).getSeat();
-			if(seat.equals("A")) { timeSeatA[0]=timeA(date,time); }
-			else if(seat.equals("B")) { timeSeatA[1]=timeA(date,time); }
-			else if(seat.equals("C")) { timeSeatA[2]=timeA(date,time); }
-			else if(seat.equals("D")) { timeSeatA[3]=timeA(date,time); }
-			else if(seat.equals("E")) { timeSeatA[4]=timeA(date,time); }
-			else if(seat.equals("F")) { timeSeatA[5]=timeA(date,time); }
-			else if(seat.equals("G")) { timeSeatA[6]=timeA(date,time); }
-			else if(seat.equals("H")) { timeSeatA[7]=timeA(date,time); }
-			else if(seat.equals("I")) { timeSeatA[8]=timeA(date,time); }
-			else if(seat.equals("J")) { timeSeatA[9]=timeA(date,time); }
+			if(date.getYear() == time.getYear() && date.getMonth() == time.getMonth() && date.getDate() == time.getDate()) {
+				if(seat.equals("A")) { timeSeatA[0]=timeA(date,time); }
+				else if(seat.equals("B")) { timeSeatA[1]=timeA(date,time); }
+				else if(seat.equals("C")) { timeSeatA[2]=timeA(date,time); }
+				else if(seat.equals("D")) { timeSeatA[3]=timeA(date,time); }
+				else if(seat.equals("E")) { timeSeatA[4]=timeA(date,time); }
+				else if(seat.equals("F")) { timeSeatA[5]=timeA(date,time); }
+				else if(seat.equals("G")) { timeSeatA[6]=timeA(date,time); }
+				else if(seat.equals("H")) { timeSeatA[7]=timeA(date,time); }
+				else if(seat.equals("I")) { timeSeatA[8]=timeA(date,time); }
+				else if(seat.equals("J")) { timeSeatA[9]=timeA(date,time); }
+			}
 		}
 		
 		return timeSeatA;
@@ -405,17 +409,19 @@ public class RestaurantManager {
 		for(int i=0;i<timeSeatR.length;i++) { timeSeatR[i]="X"; }
 		for(int i=0;i<list.size();i++) {
 			Date date = ((Restaurant) list.get(i)).getDATE();
-			String seat = ((Restaurant) list.get(i)).getSeat();
-			if(seat.equals("A")) { timeSeatR[0]=timeR(date,time); }
-			else if(seat.equals("B")) { timeSeatR[1]=timeR(date,time); }
-			else if(seat.equals("C")) { timeSeatR[2]=timeR(date,time); }
-			else if(seat.equals("D")) { timeSeatR[3]=timeR(date,time); }
-			else if(seat.equals("E")) { timeSeatR[4]=timeR(date,time); }
-			else if(seat.equals("F")) { timeSeatR[5]=timeR(date,time); }
-			else if(seat.equals("G")) { timeSeatR[6]=timeR(date,time); }
-			else if(seat.equals("H")) { timeSeatR[7]=timeR(date,time); }
-			else if(seat.equals("I")) { timeSeatR[8]=timeR(date,time); }
-			else if(seat.equals("J")) { timeSeatR[9]=timeR(date,time); }
+			if(date.getYear() == time.getYear() && date.getMonth() == time.getMonth() && date.getDate() == time.getDate()) {
+				String seat = ((Restaurant) list.get(i)).getSeat();
+				if(seat.equals("A")) { timeSeatR[0]=timeR(date,time); }
+				else if(seat.equals("B")) { timeSeatR[1]=timeR(date,time); }
+				else if(seat.equals("C")) { timeSeatR[2]=timeR(date,time); }
+				else if(seat.equals("D")) { timeSeatR[3]=timeR(date,time); }
+				else if(seat.equals("E")) { timeSeatR[4]=timeR(date,time); }
+				else if(seat.equals("F")) { timeSeatR[5]=timeR(date,time); }
+				else if(seat.equals("G")) { timeSeatR[6]=timeR(date,time); }
+				else if(seat.equals("H")) { timeSeatR[7]=timeR(date,time); }
+				else if(seat.equals("I")) { timeSeatR[8]=timeR(date,time); }
+				else if(seat.equals("J")) { timeSeatR[9]=timeR(date,time); }
+			}
 		}
 		return timeSeatR;
 	} // timeSeatR
